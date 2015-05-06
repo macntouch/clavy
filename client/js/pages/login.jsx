@@ -1,7 +1,8 @@
 "use strict"
 
 var React = require('react'),
-    lz = require('localization').get('sentences'),
+    lzSn = require('localization').get('sentences'),
+    lz = require('localization').get(),
     api = require('../libs/api'),
     route = require('page'),
     validator = require('../../../common/libs/validator'),
@@ -34,12 +35,12 @@ var Login = React.createClass({
 
     validateForm: function (email, password) {
         if (!validator.checkEmail(email)) {
-            this.showValidationError(lz.VALIDATION_WRONG_EMAIL);
+            this.showValidationError(lzSn.VALIDATION_WRONG_EMAIL);
             return false;
         }
 
         if (password === '') {
-            this.showValidationError(lz.VALIDATION_EMPTY_PASSWORD);
+            this.showValidationError(lzSn.VALIDATION_EMPTY_PASSWORD);
             return false;
         }
 
@@ -83,7 +84,6 @@ var Login = React.createClass({
             { this.state.validationMessage ?
                 <div className="error-message"><span>{this.state.validationMessage}</span></div>
                 : null }
-
             <form className="public-form" onSubmit={this.handleSubmit}>
                 <section>
                     <label className="public-label">{ lz.LOGIN }</label>
