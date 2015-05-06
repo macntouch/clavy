@@ -1,11 +1,12 @@
 "use strict";
 
 var mongoose = require('mongoose'),
+    config = require('../../config'),
     fs = require('fs'),
     path = require('path'),
     async = require('async');
 
-mongoose.connect('mongodb://localhost/taskManager');
+mongoose.connect(config.mongodb.connection);
 var db = mongoose.connection;
 
 db.on('error', function (err) {

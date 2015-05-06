@@ -1,6 +1,7 @@
 'use strict'
 
 var express = require('express'),
+    config = require('./config'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
@@ -25,6 +26,6 @@ db.init(path.join(__dirname, '/server/models'));
 require('./server/config/passport')(passport);
 require('./server/routes/routes.js')(app, passport);
 
-app.listen(8080, function () {
-    console.log('server running on port 8080');
+app.listen(config.app.port, config.app.ip, function () {
+    console.log('server running on ' + config.app.ip + ':' + config.app.port);
 });
